@@ -1,6 +1,6 @@
 {
   "name": "vue-youtube-player",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Vuejs youtube video embed, can embed dynamically",
   "author": "akulubala <akulubala@gmail.com>",
   "private": false,
