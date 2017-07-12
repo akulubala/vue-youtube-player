@@ -1,5 +1,5 @@
 <template>
-<div id="youtube-wrapper">
+<div id="youtube-wrapper" v-bind:style="videoStyle">
     <div class="youtube" :data-embed="youtube" @click="loadYoutube">
         <div class="play-button"></div>
     </div>
@@ -28,42 +28,42 @@ function getIdFromURL (url) {
 }
 
 export default {
-	props: {
-		'youtube': {
-			type: String,
-			default: ''
-		}
-	},
-	mounted() {
-		var youtube = this.$el.querySelector(".youtube")
+    props: {
+        'youtube': {
+            type: String,
+            default: ''
+        },
+        'videoStyle': {
+            "max-width": "680px",
+            "margin": "60px auto",
+            "padding": "0 20px"
+        }
+    },
+    mounted() {
+        var youtube = this.$el.querySelector(".youtube")
         let id = getIdFromURL(youtube.dataset.embed)
-		let imageSource = "https://img.youtube.com/vi/"+ id +"/sddefault.jpg"
-		let image = new Image()
-			image.src = imageSource
-			image.addEventListener( "load", function() {
-				youtube.appendChild( image )
-          	})
-	},
-	methods: {
-		loadYoutube() {
-			let youtube = this.$el.querySelector(".youtube")
-			var iframe = document.createElement( "iframe" )
+        let imageSource = "http://img.youtube.com/vi/"+ id +"/hqdefault.jpg"
+        let image = new Image()
+            image.src = imageSource
+            image.addEventListener( "load", function() {
+                youtube.appendChild( image )
+            })
+    },
+    methods: {
+        loadYoutube() {
+            let youtube = this.$el.querySelector(".youtube")
+            let id = getIdFromURL(youtube.dataset.embed)
+            var iframe = document.createElement( "iframe" )
             iframe.setAttribute( "frameborder", "0" )
             iframe.setAttribute( "allowfullscreen", "" )
-            iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ youtube.dataset.embed +"?rel=0&showinfo=0&autoplay=1" )
+            iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ id +"?rel=0&showinfo=0&autoplay=1" )
             youtube.innerHTML = ""
             youtube.appendChild( iframe )
-		}
-	}
-}	
+        }
+    }
+}   
 </script>
 <style>
-#youtube-wrapper {
-    max-width: 680px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
-
 #youtube-wrapper .youtube {
     background-color: #000;
     margin-bottom: 30px;
