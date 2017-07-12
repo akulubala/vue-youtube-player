@@ -1,5 +1,5 @@
 <template>
-<div id="youtube-wrapper" v-bind:style="videoStyle">
+<div id="youtube-wrapper" v-bind:style="{ 'max-width': max-width, 'max-height': max-height }">
     <div class="youtube" :data-embed="youtube" @click="loadYoutube">
         <div class="play-button"></div>
     </div>
@@ -33,11 +33,13 @@ export default {
             type: String,
             default: ''
         },
-        'videoStyle': {
-            "max-width": "680px",
-            "max-height": "400px",
-            "margin": "60px auto",
-            "padding": "0 20px"
+        'max-width': {
+            type: String,
+            default: '680px'
+        },
+        'max-height': {
+            type: String,
+            default: '400px'
         }
     },
     mounted() {
@@ -57,6 +59,8 @@ export default {
             var iframe = document.createElement( "iframe" )
             iframe.setAttribute( "frameborder", "0" )
             iframe.setAttribute( "allowfullscreen", "" )
+            iframe.setAttribute("width", this.maxWidth)
+            iframe.setAttribute("height", this.maxHeight)
             iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ id +"?rel=0&showinfo=0&autoplay=1" )
             youtube.innerHTML = ""
             youtube.appendChild( iframe )
