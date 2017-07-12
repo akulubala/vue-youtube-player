@@ -18,6 +18,6 @@ From vue components:
 
 styling:
 
-can pass videoStyle to componet change max-width, padding and margin
+can pass videoStyle to componet change max-width,max-height, padding and margin
 
-`<VueYoutubePlayer :youtube="youtube key or url" :videoStyle="'max-width:400px;margin:10px;padding:10px'"></VueYoutubePlayer>`
+`<VueYoutubePlayer :youtube="youtube key or url" :videoStyle="'max-width:400px;max-height:400px;margin:10px;padding:10px'"></VueYoutubePlayer>`

@@ -35,6 +35,7 @@ export default {
         },
         'videoStyle': {
             "max-width": "680px",
+            "max-height": "400px",
             "margin": "60px auto",
             "padding": "0 20px"
         }
