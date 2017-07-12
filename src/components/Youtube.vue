@@ -6,6 +6,27 @@
 </div>
 </template>
 <script>
+const youtubeRegexp = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig
+
+function getIdFromURL (url) {
+  var id = url.replace(youtubeRegexp, '$1');
+
+  if (id.includes(';')) {
+    var pieces = id.split(';');
+
+    if (pieces[1].includes('%')) {
+      var uriComponent = decodeURIComponent(pieces[1]);
+      id = ("http://youtube.com" + uriComponent).replace(youtubeRegexp, '$1');
+    } else {
+      id = pieces[0];
+    }
+  } else if (id.includes('#')) {
+    id = id.split('#')[0];
+  }
+
+  return id
+}
+
 export default {
 	props: {
 		'youtube': {
@@ -15,7 +36,8 @@ export default {
 	},
 	mounted() {
 		var youtube = this.$el.querySelector(".youtube")
-		let imageSource = "https://img.youtube.com/vi/"+ youtube.dataset.embed +"/sddefault.jpg"
+        let id = getIdFromURL(youtube.dataset.embed)
+		let imageSource = "https://img.youtube.com/vi/"+ id +"/sddefault.jpg"
 		let image = new Image()
 			image.src = imageSource
 			image.addEventListener( "load", function() {
