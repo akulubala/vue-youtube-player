@@ -1,3 +1,7 @@
+[![npm](https://img.shields.io/npm/dt/vue-youtube-player.svg?style=plastic)](https://www.npmjs.com/package/vue-youtube-player)
+[![npm](https://img.shields.io/npm/l/vue-youtube-player.svg?style=plastic)](https://www.npmjs.com/package/vue-youtube-player)
+[![license](https://img.shields.io/github/license/akulubala/vue-youtube-player.svg?style=plastic)]()
+---
 # vue-youtube-player
 
 > Vuejs youtube emebed
